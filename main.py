@@ -3,14 +3,36 @@ print("welcome")
 player_1 = input("Player 1 Name: ")
 player_2 = input("Player 2 Name: ")
 
-limit_value = int(input("Limit Value: "))
-max_value = int(input("Max value: "))
+def input_num(prompt):
+    num = input(prompt)
+    for i in range(9):
+        try:
+            num = int(num)
+        except ValueError:
+            print(f"Not a number: {i+1}/10")
+            num = input(prompt)
+    try:
+        num = int(num)
+    except ValueError:
+        print(f"Not a number: {10}/10")
+        print("Maximum number of error exceeded")
+        exit()
+    return num
+
+limit_value = input_num("Limit Value: ")
+
+print("Limit Value is ", limit_value)
+
+max_value = input_num("Max value: ")
+
+print("Max Value is ", max_value)
 
 def valid_num(player):
-    num = int(input(player + ": "))
+    prompt = player + ": "
+    num = input_num(prompt)
     while 0 >= num or num > max_value:
         print("Invalid Number")
-        num = int(input(player + ": "))
+        num = input_num(prompt)
     return num
 
 current_sum = 0
