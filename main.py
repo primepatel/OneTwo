@@ -1,7 +1,26 @@
 print("welcome")
 
-player_1 = input("Player 1 Name: ")
-player_2 = input("Player 2 Name: ")
+def valid_name(prompt):
+    name = input(prompt)
+    while name == "":
+        name = input(prompt)
+    return name
+
+
+player_1 = valid_name("Player 1 Name: ")
+player_2 = valid_name("Player 2 Name: ")
+
+for i in range(10):
+    if player_1 == player_2:
+        print(f"Same Name: {i+1}/10")
+        print("Choose different name")
+        player_2 = valid_name("Player 2 Name: ")
+    else:
+        break
+
+if player_1 == player_2:
+    print("Reach maximum error limit")
+    exit()
 
 def input_num(prompt):
     num = input(prompt)
