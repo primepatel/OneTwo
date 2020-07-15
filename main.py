@@ -1,4 +1,8 @@
+import random
+
 print("welcome")
+
+COLORS = ["\u001b[31;1m", "\u001b[32m", "\u001b[33;1m", "\u001b[34;1m", "\u001b[35m", "\u001b[36m", "\u001b[37m"]
 
 def valid_name(prompt):
     name = input(prompt)
@@ -57,13 +61,13 @@ def valid_num(player):
 current_sum = 0
 
 for i in range(limit_value):
-    player_1_num = valid_num(player_1)
+    player_1_num = valid_num(COLORS[random.randint(0, 6)] + player_1)
     current_sum += player_1_num
     print("Current sum: ", current_sum, " Limit value: ", limit_value)
     if current_sum >= limit_value:
         print(player_2, " wins")
         break
-    player_2_num = valid_num(player_2)
+    player_2_num = valid_num(COLORS[random.randint(0, 6)] + player_2)
     current_sum += player_2_num
     print("Current sum: ", current_sum, " Limit value: ", limit_value)
     if current_sum >= limit_value:
