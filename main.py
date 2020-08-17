@@ -1,5 +1,12 @@
 import random
 
+
+class Player:
+    def __init__(self, name, color) -> None:
+        self.name = name
+        self.color = color
+
+
 print("welcome")
 
 COLORS = ["\u001b[31;1m", "\u001b[32m", "\u001b[33;1m", "\u001b[34;1m", "\u001b[35m", "\u001b[36m", "\u001b[37m"]
@@ -10,14 +17,9 @@ def valid_name(prompt):
         name = input(prompt)
     return name
 
-
-player_1 = valid_name("Player 1 Name: ")
-player_2 = valid_name("Player 2 Name: ")
-
-
-if player_1 == player_2:
-    print("Reach maximum error limit")
-    exit()
+PLAYERS = []
+for i in range(2):
+    PLAYERS.append(Player(valid_name("Player 1 Name: "), random.choice(COLORS)))
 
 def input_num(prompt):
     num = input(prompt)
@@ -54,15 +56,15 @@ def valid_num(player):
 current_sum = 0
 
 while current_sum<limit_value:
-    player_1_num = valid_num(COLORS[random.randint(0, 6)] + player_1)
-    current_sum += player_1_num
+    num = valid_num(PLAYERS[0].color + PLAYERS[0].name)
+    current_sum += num
     print("Current sum: ", current_sum, " Limit value: ", limit_value)
     if current_sum >= limit_value:
-        print(player_2, " wins")
+        print(PLAYERS[1].name, " wins")
         break
-    player_2_num = valid_num(COLORS[random.randint(0, 6)] + player_2)
-    current_sum += player_2_num
+    num = valid_num(PLAYERS[1].color + PLAYERS[1].name)
+    current_sum += num
     print("Current sum: ", current_sum, " Limit value: ", limit_value)
     if current_sum >= limit_value:
-        print(player_1, " wins")
+        print(PLAYERS[0].name, " wins")
         break
